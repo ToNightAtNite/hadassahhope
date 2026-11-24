@@ -1,0 +1,51 @@
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+h1, h2, h3, .font-heading {
+  font-family: 'Montserrat', sans-serif;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: floatSlow 4.5s ease-in-out infinite;
+}
+
+.page-section {
+  animation: fadeSlideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link.active-tab {
+  color: #6A1B7A;
+  position: relative;
+}
+
+.nav-link.active-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #6A1B7A;
+  border-radius: 999px;
+}

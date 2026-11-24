@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hadassah Hope Foundation | RN: 10009677</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Playfair+Display:ital,wght@1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandPurple: '#6A1B7A',
+            brandPurpleDark: '#4A0E57',
+            brandBlue: '#0E2A78',
+            brandBlueLight: '#1E40AF',
+            brandPink: '#F4C7D8',
+            brandPinkLight: '#FDF2F7',
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            script: ['Playfair Display', 'serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-white text-slate-800 antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+  <!-- TOP INFO BAR -->
+  <div class="bg-brandBlue text-white text-xs py-2 px-4">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-3">
+        <span class="bg-white/15 px-2.5 py-0.5 rounded-full font-bold tracking-wide">CAC Registered • RN: 10009677</span>
+        <span class="hidden sm:inline text-brandPink">Empowering Communities Across Nigeria (🇳🇬)</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="tel:07048350655" class="hover:text-brandPink transition">📞 07048350655</a>
+        <a href="tel:08137830718" class="hover:text-brandPink transition hidden sm:inline">08137830718</a>
+        <button onclick="openAdminModal()" class="bg-brandPurple hover:bg-brandPurpleDark text-white px-2.5 py-0.5 rounded font-semibold transition">
+          🔐 Admin Portal
+        </button>
+      
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-purple-100 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <button onclick="navigate('home')" class="flex items-center gap-3 text-left group">
+        <svg class="w-11 h-11 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M38 30C27 30 20 37 20 45C20 53 27 60 38 60C48 60 55 51 60 45C65 39 72 30 82 30C93 30 100 37 100 45C100 53 93 60 82 60C72 60 65 51 60 45C55 39 48 30 38 30Z" stroke="#6A1B7A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M60 45C65 39 72 30 82 30C93 30 100 37 100 45C100 53 93 60 82 60" stroke="#2BB6A8" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="46" cy="20" r="4" fill="#2BB6A8"/>
+          <circle cx="60" cy="15" r="5" fill="#E87EA1"/>
+          <circle cx="74" cy="20" r="4" fill="#6A1B7A"/>
+          <path d="M16 52C14 68 25 87 54 96C51 82 41 72 26 65C23 63 20 57 16 52Z" fill="#6A1B7A"/>
+          <path d="M26 50C25 63 34 78 55 88C52 76 43 67 31 60L26 50Z" fill="#8E24AA"/>
+          <path d="M104 52C106 68 95 87 66 96C69 82 79 72 94 65C97 63 100 57 104 52Z" fill="#6A1B7A"/>
+          <path d="M94 50C95 63 86 78 65 88C68 76 77 67 89 60L94 50Z" fill="#8E24AA"/>
+        </svg>
+        <div>
+          <span class="block font-heading font-black text-base sm:text-lg leading-tight text-slate-900">HADASSAH HOPE</span>
+          <span class="block font-heading font-extrabold text-xs leading-tight text-brandPurple tracking-widest">FOUNDATION</span>
+        </div>
+      </button>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-heading font-bold text-slate-700">
+        <button onclick="navigate('home')" id="nav-home" class="nav-link active-tab hover:text-brandPurple transition">Home</button>
+        <button onclick="navigate('about')" id="nav-about" class="nav-link hover:text-brandPurple transition">About</button>
+        <button onclick="navigate('outreach')" id="nav-outreach" class="nav-link hover:text-brandPurple transition">Outreach</button>
+        <button onclick="navigate('contact')" id="nav-contact" class="nav-link hover:text-brandPurple transition">Contact</button>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-2">
+        <button onclick="navigate('contact')" class="bg-brandPurple hover:bg-brandPurpleDark text-white font-heading font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-md transition transform hover:-translate-y-0.5">
+          Donate / Partner
+        </button>
+        <button onclick="toggleMobileMenu()" aria-label="Open Menu" class="md:hidden p-2 rounded-lg text-brandBlue hover:bg-brandPinkLight font-bold text-lg">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-purple-100 px-4 py-3 space-y-2 font-heading font-bold text-sm">
+      <button onclick="navigate('home'); toggleMobileMenu()" class="block w-full text-left py-2 text-brandBlue">Home</button>
+      <button onclick="navigate('about'); toggleMobileMenu()" class="block w-full text-left py-2 text-brandBlue">About Us</button>
+      <button onclick="navigate('outreach'); toggleMobileMenu()" class="block w-full text-left py-2 text-brandBlue">Outreach &amp; Gallery</button>
+      <button onclick="navigate('contact'); toggleMobileMenu()" class="block w-full text-left py-2 text-brandBlue">Contact &amp; Donate</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow">
+
+    <!-- ==================== 1. HOME VIEW ==================== -->
+    <section id="view-home" class="page-section">
+      <!-- Hero Banner -->
+      <div class="relative bg-gradient-to-br from-white via-brandPinkLight to-brandPink/40 py-14 sm:py-20 px-4 overflow-hidden">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-7 text-center lg:text-left">
+            <span class="inline-block bg-brandPink text-brandPurpleDark font-heading font-extrabold text-xs px-3.5 py-1.5 rounded-full mb-4">
+              NIGERIAN NON-PROFIT ORGANISATION
+            </span>
+            <h1 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-brandBlue leading-[1.08] mb-4">
+              Bringing Back <span class="text-brandPurple">Hope</span> In Every Soul.
+            </h1>
+            <p class="font-script italic text-2xl text-brandPurple mb-3">“Be A Reason Someone Smiles!”</p>
+            <p class="text-slate-700 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 mb-7 leading-relaxed">
+              Hadassah Hope Foundation is committed to uplifting vulnerable children, young, and underserved communities across Nigeria through support, healthcare hygiene, and compassionate welfare programs.
+            </p>
+            <div class="flex flex-wrap justify-center lg:justify-start gap-3">
+              <button onclick="navigate('outreach')" class="bg-brandBlue hover:bg-brandBlueLight text-white font-heading font-bold px-7 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
+                Explore Our Outreach
+              </button>
+              <button onclick="navigate('about')" class="bg-white hover:bg-brandPinkLight text-brandPurple border-2 border-brandPurple font-heading font-bold px-7 py-3.5 rounded-xl transition">
+                Learn About Us
+              </button>
+            </div>
+          </div>
+
+          <!-- Compact African/Nigerian Visual Collage -->
+          <div class="lg:col-span-5">
+            <div class="max-w-md mx-auto space-y-3">
+              <div class="bg-white p-2.5 rounded-3xl shadow-xl border-2 border-brandPink animate-float">
+                <img
+                  src="https://images.pexels.com/photos/30037382/pexels-photo-30037382.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Smiling Nigerian school children"
+                  class="w-full h-44 object-cover rounded-2xl"
+                />
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-2 rounded-2xl shadow-md border border-purple-100">
+                  <img
+                    src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=450&q=80"
+                    alt="African youth smiling"
+                    class="w-full h-28 object-cover rounded-xl"
+                  />
+                </div>
+                <div class="bg-white p-2 rounded-2xl shadow-md border border-purple-100">
+                  <img
+                    src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=450&q=80"
+                    alt="Community humanitarian outreach"
+                    class="w-full h-28 object-cover rounded-xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Impact Metrics Strip -->
+      <div class="bg-brandPurple text-white py-10 px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div>
+            <span class="block font-heading font-black text-3xl sm:text-4xl text-brandPink counter" data-target="1500">0</span>
+            <span class="text-xs sm:text-sm font-semibold text-purple-100">Children &amp; Youth Reached</span>
+          </div>
+          <div>
+            <span class="block font-heading font-black text-3xl sm:text-4xl text-brandPink counter" data-target="25">0</span>
+            <span class="text-xs sm:text-sm font-semibold text-purple-100">Community Outreaches</span>
+          </div>
+          <div>
+            <span class="block font-heading font-black text-3xl sm:text-4xl text-brandPink counter" data-target="120">0</span>
+            <span class="text-xs sm:text-sm font-semibold text-purple-100">Active Volunteers</span>
+          </div>
+          <div>
+            <span class="block font-heading font-black text-3xl sm:text-4xl text-brandPink">100%</span>
+            <span class="text-xs sm:text-sm font-semibold text-purple-100">Community Commitment</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Focus Areas -->
+      <div class="max-w-6xl mx-auto py-16 px-4">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-brandPurple font-heading font-bold text-xs tracking-widest uppercase">What We Do</span>
+          <h2 class="font-heading font-black text-3xl text-brandBlue mt-1">Our Pillars of Impact</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-brandPinkLight/60 border border-brandPink rounded-3xl p-6 hover:shadow-lg transition">
+            <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=500&q=80" alt="African students studying" class="w-full h-36 object-cover rounded-2xl mb-4" />
+            <h3 class="font-heading font-bold text-lg text-brandBlue mb-2">Education &amp; School Support</h3>
+            <p class="text-sm text-slate-600">Equipping Nigerian school children with uniforms, and learning materials so poverty never stops their education.</p>
+          </div>
+          <div class="bg-blue-50/70 border border-blue-100 rounded-3xl p-6 hover:shadow-lg transition">
+            <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=500&q=80" alt="Young African girls smiling" class="w-full h-36 object-cover rounded-2xl mb-4" />
+            <h3 class="font-heading font-bold text-lg text-brandBlue mb-2">Girl-Child Dignity &amp; Hygiene</h3>
+            <p class="text-sm text-slate-600">Providing sanitary pads, toiletries, and health education to keep young girls confident.</p>
+          </div>
+          <div class="bg-purple-50/70 border border-purple-100 rounded-3xl p-6 hover:shadow-lg transition">
+            <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=500&q=80" alt="Community food outreach" class="w-full h-36 object-cover rounded-2xl mb-4" />
+            <h3 class="font-heading font-bold text-lg text-brandBlue mb-2">Food &amp; Community Welfare</h3>
+            <p class="text-sm text-slate-600">Organizing feeding programs, clothing drives, and relief visits to remind vulnerable families they are not forgotten.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Outreach Preview Strip -->
+      <div class="bg-slate-50 py-14 px-4 border-t border-slate-100">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex flex-wrap justify-between items-end gap-4 mb-8">
+            <div>
+              <span class="text-brandPurple font-heading font-bold text-xs uppercase tracking-widest">Field Highlights</span>
+              <h2 class="font-heading font-black text-2xl sm:text-3xl text-brandBlue mt-1">Latest Outreach Moments</h2>
+            </div>
+            <button onclick="navigate('outreach')" class="text-brandPurple font-heading font-bold text-sm hover:underline">
+              View All Outreach Photos →
+            </button>
+          </div>
+          <div id="home-gallery-preview" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. ABOUT VIEW ==================== -->
+    <section id="view-about" class="page-section hidden py-14 px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="bg-brandPink text-brandPurpleDark font-heading font-bold text-xs px-3 py-1 rounded-full">WHO WE ARE</span>
+          <h1 class="font-heading font-black text-3xl sm:text-5xl text-brandBlue mt-3 mb-3">About Hadassah Hope Foundation</h1>
+          <p class="text-slate-600 text-sm sm:text-base">Registered in Nigeria under the Corporate Affairs Commission (<strong>RN: 10009677</strong>).</p>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-8 items-center mb-14">
+          <div class="md:col-span-5">
+            <div class="bg-brandPinkLight p-3 rounded-3xl border-2 border-brandPink shadow-md">
+              <img src="https://images.pexels.com/photos/30037382/pexels-photo-30037382.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hadassah Hope Foundation Outreach" class="w-full h-64 object-cover rounded-2xl" />
+            </div>
+          </div>
+          <div class="md:col-span-7 space-y-4">
+            <h2 class="font-heading font-extrabold text-2xl text-brandPurple">Our Story &amp; Purpose</h2>
+            <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+              <strong>Hadassah Hope Foundation</strong> was born out of a deep passion to see underprivileged Nigerians live with dignity, hope, and opportunity. Guided by our motto—<em>“Let’s join hands in helping and bring back hope in souls”</em>—we mobilize volunteers, donors, and community leaders to reach grassroots communities across Nigeria.
+            </p>
+            <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+              Whether through school supply distributions, menstrual hygiene awareness, community feeding, or orphanage visits, our focus remains clear: <strong>Be a reason someone smiles!</strong>
+            </p>
+          </div>
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+          <div class="bg-brandBlue text-white rounded-3xl p-7 shadow-lg">
+            <h3 class="font-heading font-black text-xl text-brandPink mb-2">🎯 Our Mission</h3>
+            <p class="text-blue-100 text-sm leading-relaxed">
+              To empower vulnerable children, young, women, and families across Nigeria through sustainable support, health &amp; hygiene initiatives, nutritional aid, and compassionate community outreach.
+            </p>
+          </div>
+          <div class="bg-brandPurple text-white rounded-3xl p-7 shadow-lg">
+            <h3 class="font-heading font-black text-xl text-brandPink mb-2">👁️ Our Vision</h3>
+            <p class="text-purple-100 text-sm leading-relaxed">
+              A compassionate Nigeria where every child has access to care, and every forgotten soul experiences restored hope and human dignity.
+            </p>
+          </div>
+        </div>
+
+        <!-- Governance & Registration Box -->
+        <div class="bg-brandPinkLight/60 border border-brandPink rounded-3xl p-6 sm:p-8">
+          <h3 class="font-heading font-black text-xl text-brandBlue mb-4">Official Foundation Details</h3>
+          <div class="grid sm:grid-cols-3 gap-4 text-sm">
+            <div class="bg-white p-4 rounded-2xl shadow-sm">
+              <span class="text-xs font-bold text-slate-400 uppercase">CAC Registration</span>
+              <p class="font-heading font-extrabold text-brandPurple text-base mt-1">RN: 10009677</p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm">
+              <span class="text-xs font-bold text-slate-400 uppercase">Head Office</span>
+              <p class="font-heading font-bold text-slate-800 text-sm mt-1">No 5 Yayale, Apo, FCT Abuja</p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm">
+              <span class="text-xs font-bold text-slate-400 uppercase">Account Name</span>
+              <p class="font-heading font-bold text-slate-800 text-sm mt-1">Hadassah Hope Foundation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. OUTREACH & GALLERY VIEW ==================== -->
+    <section id="view-outreach" class="page-section hidden py-14 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="bg-brandPink text-brandPurpleDark font-heading font-bold text-xs px-3 py-1 rounded-full">FIELD IMPACT</span>
+            <h1 class="font-heading font-black text-3xl sm:text-5xl text-brandBlue mt-3">Our Outreaches &amp; Gallery</h1>
+            <p class="text-slate-600 text-sm sm:text-base mt-2 max-w-2xl">
+              Explore moments from our humanitarian visits, school drives, and community welfare outreaches across Nigeria.
+            </p>
+          </div>
+          <!--
+          <button onclick="openAdminModal()" class="bg-brandPurple hover:bg-brandPurpleDark text-white font-heading font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-md transition">
+            📸 Admin:
+          </button> -->
+        </div>
+
+        <!-- Dynamic Gallery Grid -->
+        <div id="outreach-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"></div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. CONTACT & DONATE VIEW ==================== -->
+    <section id="view-contact" class="page-section hidden py-14 px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="bg-brandPink text-brandPurpleDark font-heading font-bold text-xs px-3 py-1 rounded-full">GET IN TOUCH</span>
+          <h1 class="font-heading font-black text-3xl sm:text-5xl text-brandBlue mt-3 mb-2">Contact &amp; Support Us</h1>
+          <p class="text-slate-600 text-sm sm:text-base">Partner with Hadassah Hope Foundation through donations, volunteering, or sponsorship.</p>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-8">
+          <!-- Left: Bank & Direct Contact -->
+          <div class="md:col-span-6 space-y-6">
+            <div class="bg-brandBlue text-white rounded-3xl p-6 sm:p-7 shadow-xl">
+              <div class="flex items-center justify-between mb-3">
+                <span class="bg-brandPink text-brandBlue font-heading font-extrabold text-xs px-3 py-1 rounded-full">DONATION ACCOUNT</span>
+                <span class="text-xs text-blue-200 font-bold">Let make a different</span>
+              </div>
+              <h3 class="font-heading font-black text-xl mb-4">Support Our Humanitarian Work</h3>
+
+              <div class="space-y-3 text-sm">
+                <div class="bg-white/10 rounded-xl p-3 flex justify-between items-center">
+                  <span class="text-blue-200">Account Name:</span>
+                  <span id="display-acct-name" class="font-heading font-bold text-right">Hadassah Hope Foundation</span>
+                </div>
+                <div class="bg-white/10 rounded-xl p-3 flex justify-between items-center">
+                  <span class="text-blue-200">Bank Name:</span>
+                  <span id="display-bank-name" class="font-heading font-bold">[ENTER BANK NAME]</span>
+                </div>
+                <div class="bg-white/10 rounded-xl p-3 flex justify-between items-center">
+                  <span class="text-blue-200">Account Number:</span>
+                  <div class="flex items-center gap-2">
+                    <span id="display-acct-num" class="font-heading font-black text-lg text-brandPink tracking-wider">[ENTER ACCOUNT NO.]</span>
+                    <button onclick="copyAccount()" class="bg-brandPurple hover:bg-brandPurpleDark text-white text-xs px-2.5 py-1 rounded-lg font-bold">Copy</button>
+                  </div>
+                </div>
+              </div>
+              <p id="copy-msg" class="text-xs text-emerald-300 font-bold mt-2 hidden">✅ Account number copied!</p>
+            </div>
+
+            <div class="bg-brandPinkLight border border-brandPink rounded-3xl p-6 space-y-3 text-sm">
+              <h3 class="font-heading font-extrabold text-lg text-brandBlue">Direct Contact Channels</h3>
+              <p><strong>📍 Office Address:</strong> No 5 Yayale, Apo, FCT Abuja</p>
+              <p><strong>📞 Phone / WhatsApp:</strong> <a href="tel:07048350655" class="text-brandPurple font-bold">07048350655</a> / <a href="tel:08137830718" class="text-brandPurple font-bold">08137830718</a></p>
+              <p><strong>✉️ Email:</strong> <a href="mailto:hadassahhopefoundatiom@gmail.com" class="text-brandPurple font-bold break-all">hadassahhopefoundatiom@gmail.com</a></p>
+            </div>
+          </div>
+
+          <!-- Right: Volunteer / Inquiry Form -->
+          <div class="md:col-span-6">
+            <form onsubmit="sendInquiry(event)" class="bg-white border border-purple-100 rounded-3xl p-6 sm:p-8 shadow-lg space-y-4">
+              <h3 class="font-heading font-black text-xl text-brandBlue">Send a Message or Volunteer</h3>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Your Full Name *</label>
+                <input id="contact-name" type="text" required placeholder="Enter your name" class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:border-brandPurple" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Phone / WhatsApp Number *</label>
+                <input id="contact-phone" type="tel" required placeholder="e.g. 08012345678" class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:border-brandPurple" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Subject</label>
+                <select id="contact-subject" class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:border-brandPurple">
+                  <option>Volunteer Registration</option>
+                  <option>Financial / Material Donation</option>
+                  <option>Corporate / NGO Partnership</option>
+                  <option>General Inquiry</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Message *</label>
+                <textarea id="contact-message" rows="4" required placeholder="How would you like to connect with Hadassah Hope Foundation?" class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:border-brandPurple"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-brandPurple hover:bg-brandPurpleDark text-white font-heading font-bold py-3.5 rounded-xl shadow-md transition">
+                Send Message via WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== ADMIN MODAL (POST NEW IMAGES) ==================== -->
+  <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border-2 border-brandPurple relative my-8">
+      <button onclick="closeAdminModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 font-bold text-slate-700">✕</button>
+
+      <!-- Login Box -->
+      <div id="admin-login-box">
+        <span class="bg-brandPink text-brandPurpleDark font-heading font-bold text-xs px-3 py-1 rounded-full">RESTRICTED ACCESS</span>
+        <h2 class="font-heading font-black text-2xl text-brandBlue mt-3 mb-1">Foundation Admin Portal</h2>
+        <p class="text-xs text-slate-500 mb-5">Log in to post new outreach photos or update your bank account details.</p>
+
+        <form onsubmit="verifyAdmin(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Admin Password</label>
+            <input id="admin-pass-input" type="password" required placeholder="Enter admin password" class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:border-brandPurple" />
+          </div>
+          <p id="admin-error" class="text-xs text-red-600 font-bold hidden">❌ Incorrect password. Please try again.</p>
+          <button type="submit" class="w-full bg-brandBlue hover:bg-brandBlueLight text-white font-heading font-bold py-3 rounded-xl transition">
+            Unlock Admin Dashboard
+          </button>
+        </form>
+      </div>
+
+      <!-- Admin Dashboard Box -->
+      <div id="admin-dashboard-box" class="hidden space-y-6">
+        <div>
+          <span class="bg-emerald-100 text-emerald-800 font-heading font-bold text-xs px-3 py-1 rounded-full">● ADMIN UNLOCKED</span>
+          <h2 class="font-heading font-black text-2xl text-brandBlue mt-2">Post New Outreach Event</h2>
+        </div>
+
+        <form onsubmit="adminAddPost(event)" class="space-y-3 bg-brandPinkLight/50 p-4 rounded-2xl border border-brandPink">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Select Outreach Photo *</label>
+            <input id="post-image-file" type="file" accept="image/*" required class="w-full text-xs bg-white border border-slate-300 rounded-xl p-2" />
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Outreach Title *</label>
+              <input id="post-title" type="text" required placeholder="e.g. Apo Community Outreach" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Location / State *</label>
+              <input id="post-location" type="text" required placeholder="e.g. Apo, Abuja" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Short Caption</label>
+            <input id="post-caption" type="text" placeholder="Brief summary of the visit..." class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm" />
+          </div>
+          <button type="submit" class="w-full bg-brandPurple hover:bg-brandPurpleDark text-white font-heading font-bold py-2.5 rounded-xl text-sm shadow transition">
+            + Publish Photo to Website
+          </button>
+        </form>
+
+        <!-- Update Bank Details -->
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+          <h3 class="font-heading font-bold text-sm text-brandBlue">Update Bank Account Details</h3>
+          <div class="grid sm:grid-cols-2 gap-2">
+            <input id="admin-bank-name" type="text" placeholder="Bank Name (e.g. Access Bank)" class="rounded-xl border border-slate-300 px-3 py-2 text-xs" />
+            <input id="admin-acct-num" type="text" placeholder="10-Digit Account Number" class="rounded-xl border border-slate-300 px-3 py-2 text-xs" />
+          </div>
+          <button onclick="saveBankDetails()" class="bg-brandBlue text-white font-heading font-bold text-xs px-4 py-2 rounded-lg hover:bg-brandBlueLight transition">
+            Save Bank Details
+          </button>
+        </div>
+
+        <div class="flex justify-between items-center pt-2 border-t border-slate-100 text-xs">
+          <button onclick="resetDefaultPosts()" class="text-red-600 hover:underline font-semibold">Reset Gallery to Defaults</button>
+          <button onclick="closeAdminModal()" class="font-heading font-bold text-slate-600 hover:text-slate-900">Done &amp; Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-brandPurpleDark text-white pt-12 pb-8 px-4 mt-auto">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 pb-8 border-b border-white/15">
+      <div>
+        <h3 class="font-heading font-black text-lg">HADASSAH HOPE FOUNDATION</h3>
+        <p class="text-brandPink font-bold text-xs mt-1">RN: 10009677</p>
+        <p class="text-purple-200 text-sm mt-3">
+          Let’s join hands in helping and bring back hope in souls. <br/>
+          <strong>Be A Reason Someone Smiles!</strong>
+        </p>
+      </div>
+      <div>
+        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-brandPink mb-3">Navigation</h4>
+        <ul class="space-y-2 text-sm text-purple-100">
+          <li><button onclick="navigate('home')" class="hover:text-white">Home</button></li>
+          <li><button onclick="navigate('about')" class="hover:text-white">About Foundation</button></li>
+          <li><button onclick="navigate('outreach')" class="hover:text-white">Outreach &amp; Gallery</button></li>
+          <li><button onclick="navigate('contact')" class="hover:text-white">Contact &amp; Donate</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-brandPink mb-3">Contact Abuja</h4>
+        <ul class="space-y-2 text-sm text-purple-100">
+          <li>📍 No 5 Yayale, Apo, FCT Abuja</li>
+          <li>📞 07048350655 / 08137830718</li>
+          <li>✉️ hadassahhopefoundatiom@gmail.com</li>
+          <!--
+          <li><button onclick="openAdminModal()" class="text-brandPink underline text-xs mt-1">Admin Login</button></li>-->
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto pt-6 flex flex-wrap justify-between items-center text-xs text-purple-200 gap-2">
+      <p>© 2026 Hadassah Hope Foundation. All Rights Reserved.</p>
+      <p>No 5 Yayale, Apo, FCT Abuja • Nigeria 🇳🇬</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
